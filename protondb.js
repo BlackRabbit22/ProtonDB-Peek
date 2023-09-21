@@ -6,6 +6,7 @@
 // @author       BlackRabbit22
 // @icon         https://www.protondb.com/sites/protondb/images/site-logo.svg
 // @homepage     https://github.com/BlackRabbit22/ProtonDBPeek
+// @downloadURL  https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/protondb.js
 // @match        *://store.steampowered.com/app/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
