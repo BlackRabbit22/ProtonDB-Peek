@@ -1,7 +1,7 @@
 # ProtonDB-Peek
 A protonDB extension/userscript that displays the status of a title without leaving Steam.
 
-## How to use:
+## How to use
 **1. Install ViolentMonkey from here:**
 
   * [Chrome / Chromium](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
