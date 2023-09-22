@@ -1,4 +1,9 @@
-# ProtonDB Peek
+<h1 align="center">
+ <img src="https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/73bae484-ed7f-49f1-a5a6-d65c1ac1cfbd" width="20%">
+  <br />
+  ProtonDB Peek
+</h1>
+
 A [protonDB](https://www.protondb.com/) extension/userscript that displays the status of a title without leaving the [Steam](https://store.steampowered.com/) website.
 
 ![image](https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/d79e0093-5d3f-487c-92d2-11beb5903309)
