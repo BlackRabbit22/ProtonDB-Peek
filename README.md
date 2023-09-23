@@ -1,5 +1,5 @@
 <h1 align="center">
- <img src="https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/73bae484-ed7f-49f1-a5a6-d65c1ac1cfbd" width="20%">
+ <img src="https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/3b421822-8f95-458e-97a1-df443e539b53" width="20%">
   <br />
   ProtonDB Peek
 </h1>
