@@ -6,7 +6,7 @@
 
 A [protonDB](https://www.protondb.com/) extension/userscript that displays the status of a title without leaving the [Steam](https://store.steampowered.com/) website.
 
-![image](https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/d79e0093-5d3f-487c-92d2-11beb5903309)
+![image](https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/17a499b4-dd66-4957-8515-983388356d0c)
 
 ## Userscript
 ### How to install
