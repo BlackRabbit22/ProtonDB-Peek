@@ -6,7 +6,7 @@
 // @author       BlackRabbit22
 // @icon         https://www.protondb.com/sites/protondb/images/site-logo.svg
 // @homepage     https://github.com/BlackRabbit22/ProtonDB-Peek
-// @downloadURL  https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/protondb.js
+// @downloadURL  https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/Userscript/protondb.js
 // @match        *://store.steampowered.com/app/*
 // @grant        GM_xmlhttpRequest
 // ==/UserScript==
@@ -65,12 +65,10 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
 `.trim();
 
   userReviewTab.appendChild(protonTier.firstChild);
-
   document.getElementById("requirementsBtn").addEventListener("click", function () {
     let linuxTab = document.querySelector('[data-os="linux"]');
-    if (linuxTab !== null) {
-      linuxTab.click();
-    }
+
+    if (linuxTab !== null) linuxTab.click();
     document.querySelector("div.game_page_autocollapse.sys_req").scrollIntoView();
   });
 };
@@ -92,20 +90,20 @@ const getTier = (appID) => {
   }).catch((error) => console.log(error));
 };
 
-// check if title is native
+// check if title runs natively on linux
 const isNative = () => {
-  if (document.querySelector('[data-os="linux"]') !== null) {
-    return nativeBadge.nativeYes;
-  }
+  if (document.querySelector('[data-os="linux"]') !== null) return nativeBadge.nativeYes;
+
   return nativeBadge.nativeNo;
 };
 
 getTier(appID)
-  .then((callback) => {
-    const reviewCount = callback[1];
-    const tierBadge = tierBadges[callback[0]];
+  .then((pDBData) => {
+    const reviewCount = pDBData[1];
+    const tierBadge = tierBadges[pDBData[0]];
     const protonDBHref = `https://www.protondb.com/app/${appID}`;
     const nativeBadge = isNative();
+
     decorate(tierBadge, protonDBHref, nativeBadge, reviewCount);
   })
   .catch((e) => void e);
