@@ -24,7 +24,7 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
           text = text
             .replace("{{tier}}", data.tier.toUpperCase())
             .replace("{{tierColour}}", tierColours[data.tier])
-            .replace(/{{score}}/g, data.score * 100)
+            .replace(/{{score}}/g, Math.round(data.score * 100))
             .replace("{{circleColour}}", data.score > 0.5 ? "#64a757" : "#e05d44")
             .replace("{{native}}", data.native ? "NATIVE" : "NOT NATIVE")
             .replace("{{nativeColour}}", data.native ? "#679d1f" : "#e05d44")
