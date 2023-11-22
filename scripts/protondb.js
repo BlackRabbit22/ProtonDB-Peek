@@ -67,6 +67,8 @@ const getNativeBadge = () => {
 // get tier from protonDB API
 chrome.runtime.sendMessage({ message: "getTier", appID: appID }, (response) => {
   const pDBData = response.pDBData;
+  console.log(pDBData);
+
   const reviewCount = pDBData.total;
   const tierBadge = chrome.runtime.getURL(tierBadges[pDBData.tier]);
   const protonDBHref = `https://www.protondb.com/app/${appID}`;

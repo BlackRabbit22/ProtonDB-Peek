@@ -4,9 +4,10 @@ const getTier = (appID) => {
   return new Promise((resolve) => {
     chrome.storage.local.get(appID, (storData) => {
       // if data not in local storage, retrieve from API
-      if (typeof storData.tier === "undefined") {
+      if (Object.entries(storData).length === 0) {
         fetch(apiURL)
           .then((response) => {
+            // if API returns 404 then set as unverified
             if (response.status === 404)
               return {
                 tier: "unverified",
@@ -19,9 +20,12 @@ const getTier = (appID) => {
           .then((data) => {
             chrome.storage.local.set({ [appID]: data });
             resolve(data);
+          })
+          .catch((error) => {
+            resolve(error);
           });
       } else {
-        resolve(storData);
+        resolve(storData[appID]);
       }
     });
   }).catch((error) => console.log(error));

@@ -21,16 +21,22 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
       .then((text) => {
         chrome.storage.local.get([appID], (data) => {
           data = data[appID];
-          text = text
-            .replace("{{tier}}", data.tier.toUpperCase())
-            .replace("{{tierColour}}", tierColours[data.tier])
-            .replace(/{{score}}/g, Math.round(data.score * 100))
-            .replace("{{circleColour}}", data.score > 0.5 ? "#64a757" : "#e05d44")
-            .replace("{{native}}", data.native ? "NATIVE" : "NOT NATIVE")
-            .replace("{{nativeColour}}", data.native ? "#679d1f" : "#e05d44")
-            .replace("{{trendingTier}}", data.trendingTier.toUpperCase())
-            .replace("{{trendingColour}}", tierColours[data.trendingTier]);
-          document.getElementsByClassName("content")[0].innerHTML = text;
+          if (data === undefined) {
+            document.getElementsByClassName(
+              "content"
+            )[0].innerHTML = `<h2>A connection could not be established to protonDB at the current time.<h2>`;
+          } else {
+            text = text
+              .replace("{{tier}}", data.tier.toUpperCase())
+              .replace("{{tierColour}}", tierColours[data.tier])
+              .replace(/{{score}}/g, Math.round(data.score * 100))
+              .replace("{{circleColour}}", data.score > 0.5 ? "#64a757" : "#e05d44")
+              .replace("{{native}}", data.native ? "NATIVE" : "NOT NATIVE")
+              .replace("{{nativeColour}}", data.native ? "#679d1f" : "#e05d44")
+              .replace("{{trendingTier}}", data.trendingTier.toUpperCase())
+              .replace("{{trendingColour}}", tierColours[data.trendingTier]);
+            document.getElementsByClassName("content")[0].innerHTML = text;
+          }
         });
       });
   } else {
