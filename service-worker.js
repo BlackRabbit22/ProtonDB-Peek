@@ -1,4 +1,9 @@
-// get tier from protondb API
+// clear cached titles
+const clearCachedDB = () => {
+  chrome.storage.local.clear(function () {});
+};
+
+// get tier from protonDB API
 const getTier = (appID) => {
   const apiURL = `https://www.protondb.com/api/v1/reports/summaries/${appID}.json`;
   return new Promise((resolve) => {
@@ -66,3 +71,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     });
   }
 });
+
+// clear DB cache on browser startup and on every 30 minutes
+clearCachedDB();
+setInterval(clearCachedDB, 30 * 60 * 1000);
