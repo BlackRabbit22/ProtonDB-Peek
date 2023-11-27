@@ -9,6 +9,10 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
 ![image](https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/17a499b4-dd66-4957-8515-983388356d0c)
 ![image](https://github.com/BlackRabbit22/ProtonDB-Peek/assets/30347438/570720bd-88ad-49eb-9694-69369da02b5a)
 
+## Browser extension
+ [![FireFox](https://i.imgur.com/RTQKbQe.png)](https://addons.mozilla.org/firefox/addon/protondb-peek/)
+
+### Chrome coming soon...
 
 ## Userscript
 > [!NOTE]
@@ -23,4 +27,4 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
 2. Install the userscript from here:
  *  [**Click Here to Install**](https://github.com/BlackRabbit22/ProtonDB-Peek/raw/main/Userscript/protondb-peek.user.js)
 
-## Chrome & FireFox extension coming soon...
+
