@@ -21,6 +21,6 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
  [![FireFox](https://i.imgur.com/RTQKbQe.png)](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
 
 2. Install the userscript from here:
- *  [**Click Here to Install**](https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/Userscript/protondb.js)
+ *  [**Click Here to Install**](https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/Userscript/protondb-peek.js)
 
 ## Chrome & FireFox extension coming soon...
