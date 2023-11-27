@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  Peek at the ProtonDB status of an app without leaving Steam.
 // @author       BlackRabbit22
-// @icon         https://www.protondb.com/sites/protondb/images/site-logo.svg
+// @icon         https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/icons/protondb-peek.svg
 // @homepage     https://github.com/BlackRabbit22/ProtonDB-Peek
 // @downloadURL  https://raw.githubusercontent.com/BlackRabbit22/ProtonDB-Peek/main/Userscript/protondb.js
 // @match        https://store.steampowered.com/app/*
