@@ -11,6 +11,8 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
 
 
 ## Userscript
+> [!NOTE]
+> The user script only allows you to view the tier badges, to get full functionality, get the browser extension.
 ### How to install
 1. Install **ViolentMonkey** from here:
 
