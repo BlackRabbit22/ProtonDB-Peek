@@ -21,10 +21,13 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
 
       // serve user error on connection error
       if (Object.entries(data).length === 0) {
-        document.getElementsByClassName("content")[0].innerHTML = `
+        document.getElementsByClassName("content")[0].insertAdjacentHTML(
+          "beforeend",
+          `
         <h2>
           A connection could not be established to protonDB at the current time.
-        <h2>`;
+        <h2>`
+        );
       } else {
         fetch(chrome.runtime.getURL("../popup/popup2.html"))
           .then((response) => response.text())
@@ -38,7 +41,7 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
               .replace("{{nativeColour}}", data.native ? "#679d1f" : "#e05d44")
               .replace("{{trendingTier}}", data.trendingTier.toUpperCase())
               .replace("{{trendingColour}}", tierColours[data.trendingTier]);
-            document.getElementsByClassName("content")[0].innerHTML = text;
+            document.getElementsByClassName("content")[0].insertAdjacentHTML("beforeend", text);
           });
       }
     });
@@ -46,7 +49,7 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
     fetch(chrome.runtime.getURL("../popup/popup1.html"))
       .then((response) => response.text())
       .then((text) => {
-        document.getElementsByClassName("content")[0].innerHTML = text;
+        document.getElementsByClassName("content")[0].insertAdjacentHTML("beforeend", text);
       });
   }
 });

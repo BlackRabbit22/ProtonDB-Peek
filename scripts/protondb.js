@@ -21,7 +21,9 @@ const nativeBadge = {
 const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
   let protonTier = document.createElement("div");
   let userReviewTab = document.getElementsByClassName("user_reviews")[0];
-  protonTier.innerHTML = `
+  protonTier.insertAdjacentHTML(
+    "beforeend",
+    `
   <div id="protonDB-Peek">
   <div id="protonDB" class="dev_row">
     <div class="subtitle column">ProtonDB:</div>
@@ -41,7 +43,8 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
     </div>
   </div>
 </div>
-`.trim();
+`.trim()
+  );
 
   userReviewTab.appendChild(protonTier.firstChild);
   document.getElementById("requirementsBtn").addEventListener("click", function () {
