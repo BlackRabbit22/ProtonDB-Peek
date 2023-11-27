@@ -12,7 +12,7 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
 ## Browser extension
  [![FireFox](https://i.imgur.com/RTQKbQe.png)](https://addons.mozilla.org/firefox/addon/protondb-peek/)
 
-### Chrome coming soon...
+### Chrome extension coming soon...
 
 ## Userscript
 > [!NOTE]
