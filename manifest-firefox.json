@@ -29,5 +29,5 @@
       "matches": ["https://store.steampowered.com/*"]
     }
   ],
-  "permissions": ["activeTab", "storage", "unlimitedStorage"]
+  "permissions": ["activeTab", "storage", "unlimitedStorage", "alarms"]
 }

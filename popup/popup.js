@@ -16,16 +16,19 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
 
   // handles popup for specific pages
   if (new RegExp("store.steampowered.com/app/*").test(url)) {
-    fetch(chrome.runtime.getURL("../popup/popup2.html"))
-      .then((response) => response.text())
-      .then((text) => {
-        chrome.storage.local.get([appID], (data) => {
-          data = data[appID];
-          if (data === undefined) {
-            document.getElementsByClassName(
-              "content"
-            )[0].innerHTML = `<h2>A connection could not be established to protonDB at the current time.<h2>`;
-          } else {
+    chrome.runtime.sendMessage({ message: "getTier", appID: appID }, (data) => {
+      data = data.pDBData;
+
+      // serve user error on connection error
+      if (Object.entries(data).length === 0) {
+        document.getElementsByClassName("content")[0].innerHTML = `
+        <h2>
+          A connection could not be established to protonDB at the current time.
+        <h2>`;
+      } else {
+        fetch(chrome.runtime.getURL("../popup/popup2.html"))
+          .then((response) => response.text())
+          .then((text) => {
             text = text
               .replace("{{tier}}", data.tier.toUpperCase())
               .replace("{{tierColour}}", tierColours[data.tier])
@@ -36,9 +39,9 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
               .replace("{{trendingTier}}", data.trendingTier.toUpperCase())
               .replace("{{trendingColour}}", tierColours[data.trendingTier]);
             document.getElementsByClassName("content")[0].innerHTML = text;
-          }
-        });
-      });
+          });
+      }
+    });
   } else {
     fetch(chrome.runtime.getURL("../popup/popup1.html"))
       .then((response) => response.text())

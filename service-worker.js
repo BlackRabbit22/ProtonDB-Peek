@@ -1,6 +1,17 @@
+// clear on browser startup
+chrome.runtime.onStartup.addListener(() => {
+  clearCachedDB();
+});
+
+// set alarm to clear cache each 30 minutes
+chrome.alarms.create({ delayInMinutes: 30 });
+chrome.alarms.onAlarm.addListener(() => {
+  clearCachedDB();
+});
+
 // clear cached titles
 const clearCachedDB = () => {
-  chrome.storage.local.clear(function () {});
+  chrome.storage.local.clear();
 };
 
 // get tier from protonDB API
@@ -10,7 +21,7 @@ const getTier = (appID) => {
     chrome.storage.local.get(appID, (storData) => {
       // if data not in local storage, retrieve from API
       if (Object.entries(storData).length === 0) {
-        fetch(apiURL)
+        fetch(apiURL, { signal: AbortSignal.timeout(1000) })
           .then((response) => {
             // if API returns 404 then set as unverified
             if (response.status === 404)
@@ -71,7 +82,3 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     });
   }
 });
-
-// clear DB cache on browser startup and on every 30 minutes
-clearCachedDB();
-setInterval(clearCachedDB, 30 * 60 * 1000);
