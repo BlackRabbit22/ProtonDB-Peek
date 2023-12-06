@@ -11,6 +11,7 @@ const tierColours = {
 
 // get tier from protonDB API
 chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
+  const parser = new DOMParser();
   const url = response.url;
   const appID = url.split("/")[4];
 
@@ -41,7 +42,9 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
               .replace("{{nativeColour}}", data.native ? "#679d1f" : "#e05d44")
               .replace("{{trendingTier}}", data.trendingTier.toUpperCase())
               .replace("{{trendingColour}}", tierColours[data.trendingTier]);
-            document.getElementsByClassName("content")[0].insertAdjacentHTML("beforeend", text);
+            document
+              .getElementsByClassName("content")[0]
+              .appendChild(parser.parseFromString(text, "text/html").body.firstChild);
           });
       }
     });
@@ -49,7 +52,9 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
     fetch(chrome.runtime.getURL("../popup/popup1.html"))
       .then((response) => response.text())
       .then((text) => {
-        document.getElementsByClassName("content")[0].insertAdjacentHTML("beforeend", text);
+        document
+          .getElementsByClassName("content")[0]
+          .appendChild(parser.parseFromString(text, "text/html").body.firstChild);
       });
   }
 });

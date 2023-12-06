@@ -19,11 +19,10 @@ const nativeBadge = {
 
 // add HTML elements to page
 const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
-  let protonTier = document.createElement("div");
   let userReviewTab = document.getElementsByClassName("user_reviews")[0];
-  protonTier.insertAdjacentHTML(
-    "beforeend",
+  let protonTier = new DOMParser().parseFromString(
     `
+    <div>
   <div id="protonDB-Peek">
   <div id="protonDB" class="dev_row">
     <div class="subtitle column">ProtonDB:</div>
@@ -43,10 +42,13 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
     </div>
   </div>
 </div>
-`.trim()
+</div>
+
+`.trim(),
+    "text/html"
   );
 
-  userReviewTab.appendChild(protonTier.firstChild);
+  userReviewTab.appendChild(protonTier.body.firstChild);
   document.getElementById("requirementsBtn").addEventListener("click", function () {
     let linuxTab = document.querySelector('[data-os="linux"]');
 
