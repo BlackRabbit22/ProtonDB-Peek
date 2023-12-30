@@ -24,10 +24,10 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
       if (Object.entries(data).length === 0) {
         document.getElementsByClassName("content")[0].insertAdjacentHTML(
           "beforeend",
-          `
+          DOMPurify.sanitize(`
         <h2>
           A connection could not be established to protonDB at the current time.
-        <h2>`
+        <h2>`)
         );
       } else {
         fetch(chrome.runtime.getURL("../popup/popup2.html"))
@@ -44,7 +44,9 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
               .replace("{{trendingColour}}", tierColours[data.trendingTier]);
             document
               .getElementsByClassName("content")[0]
-              .appendChild(parser.parseFromString(text, "text/html").body.firstChild);
+              .appendChild(
+                parser.parseFromString(DOMPurify.sanitize(text), "text/html").body.firstChild
+              );
           });
       }
     });
@@ -54,7 +56,9 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
       .then((text) => {
         document
           .getElementsByClassName("content")[0]
-          .appendChild(parser.parseFromString(text, "text/html").body.firstChild);
+          .appendChild(
+            parser.parseFromString(DOMPurify.sanitize(text), "text/html").body.firstChild
+          );
       });
   }
 });

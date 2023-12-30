@@ -21,7 +21,8 @@ const nativeBadge = {
 const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
   let userReviewTab = document.getElementsByClassName("user_reviews")[0];
   let protonTier = new DOMParser().parseFromString(
-    `
+    DOMPurify.sanitize(
+      `
   <div id="protonDB-Peek">
   <div id="protonDB" class="dev_row">
     <div class="subtitle column">ProtonDB:</div>
@@ -41,7 +42,12 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
     </div>
   </div>
 </div>
-`.trim(),
+`,
+      {
+        ADD_ATTR: ["target", "src"],
+        ALLOWED_URI_REGEXP: /^(?:(?:https|chrome-extension):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+      }
+    ),
     "text/html"
   );
 

@@ -4,8 +4,7 @@
   "version": "1.0.1",
   "description": "A protonDB extension that displays the status of a title without leaving the Steam website.",
   "background": {
-    "service_worker": "service-worker.js",
-    "type": "module"
+    "service_worker": "./service-worker.js"
   },
   "action": {
     "default_popup": "./popup/index.html"
@@ -13,7 +12,8 @@
   "content_scripts": [
     {
       "matches": ["https://store.steampowered.com/app/*"],
-      "js": ["scripts/protondb.js"]
+      "js": ["./scripts/protondb.js", "./scripts/purify.min.js"],
+      "run_at": "document_end"
     }
   ],
   "host_permissions": ["https://store.steampowered.com/*", "https://www.protondb.com/*"],
@@ -25,7 +25,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["badges/*.svg", "popup/*.html"],
+      "resources": ["/badges/*.svg"],
       "matches": ["https://store.steampowered.com/*"]
     }
   ],
