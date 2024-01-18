@@ -45,7 +45,8 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
 `,
       {
         ADD_ATTR: ["target", "src"],
-        ALLOWED_URI_REGEXP: /^(?:(?:https|chrome-extension):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+        ALLOWED_URI_REGEXP:
+          /^(?:(?:https|chrome-extension|moz-extension):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
       }
     ),
     "text/html"
