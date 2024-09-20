@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ProtonDB Peek",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A protonDB extension that displays the status of a title without leaving the Steam website.",
   "background": {
     "scripts": ["./service-worker.js"]
