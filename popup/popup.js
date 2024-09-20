@@ -57,7 +57,10 @@ chrome.runtime.sendMessage({ message: "getURL" }, (response) => {
         document
           .getElementsByClassName("content")[0]
           .appendChild(
-            parser.parseFromString(DOMPurify.sanitize(text), "text/html").body.firstChild
+            parser.parseFromString(
+              DOMPurify.sanitize(text, { ADD_ATTR: ["target"] }),
+              "text/html"
+            ).body.firstChild
           );
       });
   }
