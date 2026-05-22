@@ -34,4 +34,6 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update DOMPurify to latest"
+          commit_user_name: BlackRabbit22
+          commit_user_email: BlackRabbit22@users.noreply.github.com
           file_pattern: scripts/purify.min.js
