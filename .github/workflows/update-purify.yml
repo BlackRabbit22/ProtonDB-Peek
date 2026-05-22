@@ -19,25 +19,17 @@ jobs:
       - name: Validate purify.min.js
         run: |
           node -e "
-          const fs = require('fs');
-          const code = fs.readFileSync('purify.min.js', 'utf8');
+          const DOMPurify = require('./purify.min.js');
 
-          // Check it looks like a valid JS file
-          if (code.length < 1000) {
-            console.error('File too small, likely invalid download');
+          // Check it loaded
+          if (typeof DOMPurify !== 'function' && typeof DOMPurify !== 'object') {
+            console.error('DOMPurify not a valid module');
             process.exit(1);
           }
 
-          // Evaluate and test DOMPurify
-          const window = {};
-          eval(code);
-          if (typeof window.DOMPurify === 'undefined') {
-            console.error('DOMPurify not defined after eval');
-            process.exit(1);
-          }
-
+          // Test sanitization works
           const test = '<img src=x onerror=alert(1)>';
-          const result = window.DOMPurify.sanitize(test);
+          const result = DOMPurify.sanitize(test);
           if (result.includes('onerror')) {
             console.error('Sanitizer did not remove onerror');
             process.exit(1);
