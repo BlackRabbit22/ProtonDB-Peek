@@ -1,0 +1,56 @@
+name: Update DOMPurify
+
+on:
+  schedule:
+    - cron: '0 6 */2 * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download latest purify.min.js
+        run: |
+          TAG=$(curl -s https://api.github.com/repos/cure53/DOMPurify/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+          curl -sL "https://raw.githubusercontent.com/cure53/DOMPurify/$TAG/dist/purify.min.js" -o purify.min.js
+
+      - name: Validate purify.min.js
+        run: |
+          node -e "
+          const fs = require('fs');
+          const code = fs.readFileSync('purify.min.js', 'utf8');
+
+          // Check it looks like a valid JS file
+          if (code.length < 1000) {
+            console.error('File too small, likely invalid download');
+            process.exit(1);
+          }
+
+          // Evaluate and test DOMPurify
+          const window = {};
+          eval(code);
+          if (typeof window.DOMPurify === 'undefined') {
+            console.error('DOMPurify not defined after eval');
+            process.exit(1);
+          }
+
+          const test = '<img src=x onerror=alert(1)>';
+          const result = window.DOMPurify.sanitize(test);
+          if (result.includes('onerror')) {
+            console.error('Sanitizer did not remove onerror');
+            process.exit(1);
+          }
+
+          console.log('DOMPurify validated successfully');
+          "
+
+      - name: Swap files
+        run: |
+          mv purify.min.js scripts/purify.min.js
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update DOMPurify to latest"
+          file_pattern: scripts/purify.min.js
