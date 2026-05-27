@@ -2,7 +2,7 @@ name: Update DOMPurify
 
 on:
   schedule:
-    - cron: '0 6 */2 * *'
+    - cron: "0 6 */2 * *"
   workflow_dispatch:
 
 jobs:
@@ -14,8 +14,10 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Download latest purify.min.js
+        id: download
         run: |
           TAG=$(curl -s https://api.github.com/repos/cure53/DOMPurify/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
           curl -sL "https://raw.githubusercontent.com/cure53/DOMPurify/$TAG/dist/purify.min.js" -o purify.min.js
 
       - name: Validate purify.min.js
@@ -35,7 +37,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "chore: update DOMPurify to latest"
+          commit_message: "Update DOMPurify to ${{ steps.download.outputs.tag }}"
           commit_user_name: BlackRabbit22
           commit_user_email: BlackRabbit22@users.noreply.github.com
           file_pattern: scripts/purify.min.js
