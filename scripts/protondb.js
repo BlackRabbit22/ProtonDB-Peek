@@ -1,5 +1,5 @@
 // get appID from URL
-const appID = window.location.href.split("/")[4];
+const appID = location.pathname.split("/")[2];
 
 // SVG badges
 const tierBadges = {
@@ -47,9 +47,9 @@ const decorate = (tierBadge, protonDBHref, nativeBadge, reviewCount) => {
         ADD_ATTR: ["target", "src"],
         ALLOWED_URI_REGEXP:
           /^(?:(?:https|chrome-extension|moz-extension):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
-      }
+      },
     ),
-    "text/html"
+    "text/html",
   );
 
   userReviewTab.appendChild(protonTier.body.firstChild);
@@ -85,3 +85,4 @@ chrome.runtime.sendMessage({ message: "getTier", appID: appID }, (response) => {
   decorate(tierBadge, protonDBHref, nativeBadge, reviewCount);
   chrome.runtime.sendMessage({ message: "setNative", appID: appID, native: isNative() });
 });
+
