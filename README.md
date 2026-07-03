@@ -18,11 +18,11 @@ A [protonDB](https://www.protondb.com/) extension/userscript that displays the s
 > [!NOTE]
 > The user script only allows you to view the tier badges, to get full functionality, get the browser extension.
 ### How to install
-1. Install **ViolentMonkey** from here:
+1. Install **ScriptCat** from here:
 
- [![Chrome Webstore](https://developer.chrome.com/static/docs/webstore/branding/image/UV4C4ybeBTsZt43U4xis.png)](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)
+ [![Chrome Webstore](https://developer.chrome.com/static/docs/webstore/branding/image/UV4C4ybeBTsZt43U4xis.png)](https://chromewebstore.google.com/detail/scriptcat/ndcooeababalnlpkfedmmbbbgkljhpjf)
 
- [![FireFox](https://i.imgur.com/RTQKbQe.png)](https://addons.mozilla.org/en-US/firefox/addon/violentmonkey/)
+ [![FireFox](https://i.imgur.com/RTQKbQe.png)](https://addons.mozilla.org/en-US/firefox/addon/scriptcat/)
 
 2. Install the userscript from here:
  *  [**Click Here to Install**](https://github.com/BlackRabbit22/ProtonDB-Peek/raw/main/Userscript/protondb-peek.user.js)
